@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Authprovider = () => {
+const Home = () => {
     return (
         <div>
-            
+            <h2>this is homepage</h2>
         </div>
     );
 };
 
-export default Authprovider;
+export default Home;
