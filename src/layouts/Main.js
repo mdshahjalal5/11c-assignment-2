@@ -7,8 +7,10 @@ const Main = () => {
     return (
         <div>
             <Header></Header>
-            {/* <Outlet></Outlet>
-            <Footer></Footer> */}
+            <div className='container mx-auto py-8 '>
+                <Outlet></Outlet>
+            </div>
+            <Footer></Footer>
         </div>
     );
 };
