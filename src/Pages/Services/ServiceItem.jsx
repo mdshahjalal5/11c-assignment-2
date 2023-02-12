@@ -1,8 +1,8 @@
 import React from 'react';
 
 const ServiceItem = (any) => {
-    const { _id, name, price, ratings, img } = any.children[1]
-    console.log(any.children[1],'any')
+    const { _id, name, price, ratings, img } = any.e
+    console.log(any,'any')
     return (
         <div data-aos="flip-left" className="card w-96 bg-base-100 shadow-xl">
             <figure className="px-10 pt-10">
@@ -14,7 +14,7 @@ const ServiceItem = (any) => {
                 <div className="card-actions">
                     <button className="btn btn-primary">Buy Now</button>
                 </div>
-            </div>
+            </div> 
         </div>
     );
 };

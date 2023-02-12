@@ -22,8 +22,8 @@ const Services = () => {
     return (
         <div className='grid sm:grid-cols-1 md:grid-cols-3 gap-8'>
             {services.map((e, i, a)=>{
-                console.log(e, i, a ,'eia')
-                return <ServiceItem key={i}> {e}</ServiceItem>
+               
+                return <ServiceItem key={i} e={e}> </ServiceItem>
             })}
         </div>
     );
