@@ -48,6 +48,7 @@ const Header = () => {
                         </Link>}
                   
                     </li>
+                    <li><Link to={'/myreviews'}>My Reviews </Link></li>
                     <li><Link to={'/blog'}>Blog</Link></li>
                     <li tabIndex={0}>
                         {user?.uid ? <button onClick={handleLogout}>

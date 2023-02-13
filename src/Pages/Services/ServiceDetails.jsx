@@ -40,7 +40,8 @@ const ServiceDetails = () => {
             .then(data => {
                 console.log(data, 'data')
                 if (data?.acknowledged){
-                    toast('Ordered successful')
+                    toast('Riviewd posted successfully')
+                    setReviews([...reviews, ReviewData])
                 }
             })
         if(!user?.email){
@@ -66,7 +67,7 @@ const ServiceDetails = () => {
             </div> 
             <div className="card text-center w-96 bg-base-100 shadow-xl border-4">
                <h2 className='text-2xl'> Others Riviews</h2>
-               {reviews.map((e,i,a)=><OthersReview key={i}></OthersReview>) }
+               {reviews.map((e,i,a)=><OthersReview key={i} e={e}></OthersReview>) }
             </div>
             <div className="card w-96 bg-base-100 shadow-xl border-4">
                 <h2 className='text-2xl'>Add review</h2>

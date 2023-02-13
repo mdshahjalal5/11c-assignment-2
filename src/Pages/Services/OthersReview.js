@@ -1,10 +1,11 @@
 import React from 'react';
-
-const OthersReview = () => {
+const OthersReview = ({e}) => {
+    const {mail, review} = e;
+    console.log(e, 'e')
     return (
         < div className='border-2 border-gray-500 rounded-lg m-1 shadow-md'>
-            <h2> Name:shahjal</h2>
-            <p> It's an  awesome service</p>
+            <h2> user <b className='font-bold'> {mail}</b> </h2>
+            <p> {review} </p>            
         </div>
     );
 };
