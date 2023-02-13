@@ -1,10 +1,24 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/Authprovider';
+import OthersReview from './OthersReview';
 
 const ServiceDetails = () => {
-    const {  user } = useContext(AuthContext)
+    const [reviews, setReviews] = useState([])
+    const {user} = useContext(AuthContext);
+    console.log(user?.email)
+    useEffect(()=>{
+        async function loader(){
+            const fetchRes = await fetch(`http://localhost:5500/orders`)
+            const fetchData = await fetchRes.json()
+            console.log(fetchData, 'fetch data ')
+            setReviews(fetchData)
+        }
+         const loaderData = loader();
+
+    },[user?.email])
+ 
     const {_id, name, price, ratings, img}= useLoaderData();
     const addRiviewHandler = async (form) => {
         const userPhoto = user?.photoURL;
@@ -20,7 +34,6 @@ const ServiceDetails = () => {
             method:"POST", 
             headers:{
                 'content-type':'application/json',
-                ReviewData,
             }, 
             body:JSON.stringify(ReviewData)
         }).then(res => res.json())
@@ -51,8 +64,9 @@ const ServiceDetails = () => {
                     </div>
                 </div>
             </div> 
-            <div className="card w-96 bg-base-100 shadow-xl border-4">
+            <div className="card text-center w-96 bg-base-100 shadow-xl border-4">
                <h2 className='text-2xl'> Others Riviews</h2>
+               {reviews.map((e,i,a)=><OthersReview key={i}></OthersReview>) }
             </div>
             <div className="card w-96 bg-base-100 shadow-xl border-4">
                 <h2 className='text-2xl'>Add review</h2>
