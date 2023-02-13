@@ -1,9 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { useContext } from 'react';
+import { AuthContext } from '../../Context/Authprovider';
+import { async } from '@firebase/util';
+import { toast } from 'react-toastify';
 const Register = () => {
+    const { createUser } = useContext(AuthContext)
+     async function handleRegister(form){
+        let email, password; 
+        email = form.email.value; 
+        password = form.password.value;
+         const singUpRes = await createUser(email, password)
+         if (singUpRes.user?.uid){
+            toast('user successfully register')
+         }
+     }
     return (
-        <div className="hero min-h-screen bg-base-200 ">
+        <form onSubmit={(e) =>{
+            e.preventDefault()
+             handleRegister(e.target)}} className="hero min-h-screen bg-base-200 ">
             <div className="hero-content flex-col-reverse lg:flex-row-reverse">
                 <div className="text-center lg:text-left pl-5">
 
@@ -17,13 +32,13 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="text" placeholder="email" className="input input-bordered" />
+                            <input name='email' type="text" placeholder="email" className="input input-bordered" />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="text" placeholder="password" className="input input-bordered" />
+                            <input  name='password' type="text" placeholder="password" className="input input-bordered" />
                             <label className="label">
                                 <Link to="#" className="label-text-alt link link-hover">Forgot password?</Link>
                             </label>
@@ -37,7 +52,7 @@ const Register = () => {
                     </div>
                 </div>
             </div>
-        </div>   
+        </form>   
     );
 };
 

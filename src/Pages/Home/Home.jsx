@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import ServiceItem from '../Services/ServiceItem';
 import Banner from './Banner';
-
+import { Link } from 'react-router-dom';
 const Home = () => {
     const [services, setServices] = useState([])
-    console.log(services, 'services')
+    // console.log(services, 'services')
     useEffect(function named() {
         const loader = async () => {
             const fech = await fetch('http://localhost:5500/services?limit=3', {
@@ -27,6 +27,7 @@ const Home = () => {
             <div className='grid sm:grid-cols-1 md:grid-cols-3 gap-8'>
                 {services.map((e, i, a) => <ServiceItem key={i} e={e}> </ServiceItem>)}
             </div>
+            <Link to={'/services'}>  <div className="flex justify-center mt-4"><button className="btn btn-active btn-ghost capitalize">See all</button></div></Link>
      </>
     );
 };

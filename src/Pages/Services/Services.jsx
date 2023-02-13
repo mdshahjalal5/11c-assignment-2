@@ -4,11 +4,11 @@ let intro;
 intro = {name:'shahjalal', age:20}
 const Services = () => {
     const [services, setServices] = useState([])
-    console.log(services,  'services')
+    // console.log(services,  'services')
     useEffect(function named(){
         const loader = async()=>{
             const fech = await fetch('http://localhost:5500/services?limit=10',{
-                method:'DELETE', 
+                method:'GET', 
                 headers:{
                     test:{intro}
                 }
