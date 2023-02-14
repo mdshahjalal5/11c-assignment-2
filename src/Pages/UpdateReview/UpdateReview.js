@@ -21,8 +21,9 @@ const UpdateReview = () => {
         })
         const fetchData = await fetchRes.json();
         console.log(fetchData, 'fetchData')
-        if (fetchData.modifiedCount) {
+        if (fetchData.modifiedCount> 0) {
             toast('Successfully Updated', { autoClose: 1000 })
+            e.target.reset()            
         }
     }
     return (

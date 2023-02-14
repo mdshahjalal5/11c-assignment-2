@@ -34,37 +34,33 @@ const MyReviews = () => {
     }
     const handlerUpdate = async(e)=>{
         navigate(`/update/${e._id}`)
-        console.log(e, 'func e')
-        // const fetchRes = await fetch(`http://localhost:5500/review?id=${e._id}`, {
-        //     method: "PUT"
-        // })
-        // const fetchData = await fetchRes.json();
-        // console.log(fetchData, 'fetchData')
-        // if (fetchData.modifiedCount) {
-        //     toast('Successfully Updated', { autoClose: 1000 })
-        // }
     }
     return (
         <>
-            <div className="overflow-x-auto sm:w-full md:w-3/4 mx-auto ">
-                <table className="table w-full">
-                    <thead>
-                        <tr>
-                            <th>
-                                <label className='badge badge-ghost badge-sm'>
-                                    Delete Option
-                                </label>
-                            </th>
-                            <th>Review Message</th>
-                            <th>Update Option </th>
-                        </tr>
-                    </thead>
-                    <tbody className=''>
-                        {myReviews.map((e, i, a) => { return <ReviewsRow key={i} e={e} handlerDelete={handlerDelete} handlerUpdate={handlerUpdate}></ReviewsRow> })}
-                    </tbody>
+            {myReviews.length? 
+                <div className="overflow-x-auto sm:w-full md:w-3/4 mx-auto ">
+                    <table className="table w-full">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <label className='badge badge-ghost badge-sm'>
+                                        Delete Option
+                                    </label>
+                                </th>
+                                <th>Review Message</th>
+                                <th>Update Option </th>
+                            </tr>
+                        </thead>
+                        <tbody className=''>
+                            {myReviews.map((e, i, a) => { return <ReviewsRow key={i} e={e} handlerDelete={handlerDelete} handlerUpdate={handlerUpdate}></ReviewsRow> })}
+                        </tbody>
 
-                </table>
-            </div>
+                    </table>
+                </div>
+            :`
+                
+            `}
+           
         </>
     );
 };

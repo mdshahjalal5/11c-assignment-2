@@ -1,13 +1,13 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBaN-yjybtZGvhQDiXaMi2S6fWNSAAHfUw",
-    authDomain: "fire-express-router-pr.firebaseapp.com",
-    databaseURL: "https://fire-express-router-pr-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "fire-express-router-pr",
-    storageBucket: "fire-express-router-pr.appspot.com",
-    messagingSenderId: "888463642440",
-    appId: "1:888463642440:web:674ba9e76b76e8bdd8ad7d"
+    apiKey: process.env.REACT_APP_apiKey,
+    authDomain: process.env.REACT_APP_authDomain,
+    databaseURL: process.env.REACT_APP_databaseURL,
+    projectId: process.env.REACT_APP_projectId,
+    storageBucket: process.env.REACT_APP_storageBucket,
+    messagingSenderId: process.env.REACT_APP_messagingSenderId,
+    appId: process.env.REACT_APP_appId
 };
 
 export const app = initializeApp(firebaseConfig);

@@ -19,8 +19,12 @@ const ServiceDetails = () => {
 
     },[user?.email])
  
-    const {_id, name, price, ratings, img}= useLoaderData();
+    const {_id, name, price, ratings, img, details}= useLoaderData();
     const addRiviewHandler = async (form) => {
+        if (!user?.email) {
+            toast('Login first to review', { autoClose: 1000 })
+            return;
+        }
         const userPhoto = user?.photoURL;
         console.log(form, 'form')
         let mail, review; 
@@ -44,10 +48,6 @@ const ServiceDetails = () => {
                     setReviews([...reviews, ReviewData])
                 }
             })
-        if(!user?.email){
-            toast('Login first to review' , {autoClose:1000})
-            return;
-        }
     }
     return (
      <div className='grid lg:grid-cols-3 md:grid-cols-2'>
@@ -59,7 +59,7 @@ const ServiceDetails = () => {
                     <h2 className="card-title">{name}</h2>
                     <h2 className='font-bold'>Price: {price} </h2>
                     <p className='font-bold'> Ratings: {ratings} </p>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
+                    <p>{details} </p>
                     <div className="card-actions">
                         <button className="btn btn-primary capitalize">Order Now</button>
                     </div>
