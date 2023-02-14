@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const ServiceItem = (any) => {
-    const { _id, name, price, ratings, img, details } = any.e
+    const { _id, name, img, details } = any.e
 
     return (
         <div data-aos="flip-left" className="card w-96 bg-base-100 shadow-xl">

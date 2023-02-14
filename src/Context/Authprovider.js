@@ -1,6 +1,6 @@
 import React from 'react';
 import { createContext } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { app } from '../Firebase/firebase.config';
@@ -26,10 +26,11 @@ const AuthProvider = ({ children }) => {
         localStorage.removeItem('products-service');
         return signOut(auth);
     }
-
+const googleSignin = () =>{
+    return signInWithPopup(auth, new GoogleAuthProvider())
+}
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            console.log(currentUser);
             setUser(currentUser);
             setLoading(false);
         });
@@ -44,7 +45,8 @@ const AuthProvider = ({ children }) => {
         loading,
         createUser,
         login,
-        logOut
+        logOut, 
+        googleSignin,
     }
 
     return (

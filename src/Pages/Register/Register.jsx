@@ -2,10 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../Context/Authprovider';
-import { async } from '@firebase/util';
 import { toast } from 'react-toastify';
+import { FaGoogle } from 'react-icons/fa';
+import UseTittle from '../../utils/UseTittle';
 const Register = () => {
-    const { createUser } = useContext(AuthContext)
+    UseTittle('Register')
+    const { createUser, googleSignin } = useContext(AuthContext)
      async function handleRegister(form){
         let email, password; 
         email = form.email.value; 
@@ -15,6 +17,14 @@ const Register = () => {
             toast('user successfully register')
          }
      }
+    const hanldeGoogleLogin = async (e) => {
+        e.preventDefault();
+        const googleRes = await googleSignin()
+        if (googleRes.uid) {
+            toast('User Successfully logged in', { autoClose: 1000 })
+        }
+    }
+
     return (
         <form onSubmit={(e) =>{
             e.preventDefault()
@@ -45,6 +55,10 @@ const Register = () => {
                             <label className="label">
                                 <Link to="/login" className="label-text-alt link link-hover">Already have Account?</Link>
                             </label>
+                            <button onClick={hanldeGoogleLogin} className='flex items-center'>
+                                <FaGoogle />
+                                <span className='ml-2'>Sign in with GOOGLE</span>
+                            </button>
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Register</button>

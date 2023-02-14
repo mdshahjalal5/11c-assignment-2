@@ -1,17 +1,25 @@
-import { async } from '@firebase/util';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/Authprovider';
-
+import { FaGoogle } from 'react-icons/fa';
+import { toast } from 'react-toastify';
+import UseTittle from '../../utils/UseTittle';
 const Login = () => {
-    const { login } = useContext(AuthContext)
+    UseTittle('Login')
+    const { login, googleSignin } = useContext(AuthContext)
+    const hanldeGoogleLogin =async (e) =>{
+        e.preventDefault();
+        const googleRes = await googleSignin()
+        if (googleRes.uid){
+            toast('User Successfully logged in', {autoClose:1000})
+        }
+    }
     const handleLogin = async (e) =>{
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const pass = form.password.value;
-         const loginRes = await login(email, pass);
-         console.log(loginRes, 'ress')
+        await login(email, pass);
     }
     return (
         <form onSubmit={handleLogin} className="hero min-h-screen bg-base-200 ">
@@ -41,6 +49,11 @@ const Login = () => {
                             <label className="label">
                                 <Link to="/register" className="label-text-alt link link-hover">Not have Account?</Link>
                             </label>
+                            <button onClick={hanldeGoogleLogin} className='flex items-center'>
+                                <FaGoogle />
+                                <span className='ml-2'>Sign in with GOOGLE</span>
+                            </button>
+                         
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary" type='submit'>Login</button>

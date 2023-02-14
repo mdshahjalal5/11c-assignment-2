@@ -1,7 +1,6 @@
 import React from 'react';
 
 const ReviewsRow = (e) => {
-    console.log(e, 'e');
     const { handlerDelete, handlerUpdate } =  e
     return (
         <tr className='mb-2'>

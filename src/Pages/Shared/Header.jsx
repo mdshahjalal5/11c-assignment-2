@@ -36,7 +36,7 @@ const Header = () => {
                         </li>
                     </ul>
                 </div>
-                <Link className="btn btn-ghost normal-case text-xl">Chicken House</Link>
+                <Link to={'/'} className="btn btn-ghost normal-case text-xl">Kitchen House</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -61,8 +61,8 @@ const Header = () => {
             </div>
             <div className="navbar-end">
                 <div className="avatar">
-                    <div className="w-20 rounded-full">
-                        <img src="https://i.ibb.co/FqWkMvh/download.jpg" alt='sfs' />
+                    <div className="w-10 rounded-full">
+                        <img src={user?.photoURL ? user.photoURL : 'https://i.ibb.co/RvzyzVz/Download.jpg'} alt='sfs' />
                     </div>
                 </div>
             </div>

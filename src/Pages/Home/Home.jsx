@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import ServiceItem from '../Services/ServiceItem';
 import Banner from './Banner';
 import { Link } from 'react-router-dom';
+import UseTittle from '../../utils/UseTittle';
 const Home = () => {
+    UseTittle('Home')
     const [services, setServices] = useState([])
-    // console.log(services, 'services')
     useEffect(function named() {
         const loader = async () => {
             const fech = await fetch('http://localhost:5500/services?limit=3', {

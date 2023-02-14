@@ -2,18 +2,21 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/Authprovider';
+import UseTittle from '../../utils/UseTittle';
 import ReviewsRow from './ReviewsRow';
 
 const MyReviews = () => {
+    UseTittle('My Reviews')
     const navigate = useNavigate();
     const {user} = useContext(AuthContext)
     const [myReviews, setMyReviews] = useState([])
-    console.log(user, 'user', user?.email)
+    const [loading, setLoading ] = useState('')
     useEffect(()=>{
         async function loader(){
+            setLoading('truthy')            
             const fetchRes = await fetch(`http://localhost:5500/orders?email=${user?.email}`)
             const fetchData = await fetchRes.json()
-            console.log(fetchData, 'fetch data ')
+            setLoading('')
             setMyReviews(fetchData);            
         }
         if(user?.email){
@@ -25,7 +28,6 @@ const MyReviews = () => {
             method:"DELETE"
         })
         const fetchData = await fetchRes.json();
-        console.log(fetchData, 'fetchData')
         if (fetchData.deletedCount){
             toast('Successfully Deleted', {autoClose:1000})
             const existingReview = myReviews.filter(ev => ev._id !== e._id);
@@ -37,6 +39,13 @@ const MyReviews = () => {
     }
     return (
         <>
+            {loading ? <>
+                <div className="flex justify-center items-center    ">
+                    <div className="spinner-border border-red-500 animate-spin inline-block w-16 h-16 border-4 rounded-full text-blue-600" role="status">
+                    </div>
+                </div>
+
+            </>:''}
             {myReviews.length? 
                 <div className="overflow-x-auto sm:w-full md:w-3/4 mx-auto ">
                     <table className="table w-full">

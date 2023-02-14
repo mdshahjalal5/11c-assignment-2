@@ -2,16 +2,15 @@ import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/Authprovider';
+import UseTittle from '../../utils/UseTittle';
 
 const UpdateReview = () => {
+    UseTittle('Update Review')
     const {user} = useContext(AuthContext)
     const data = useLoaderData();
-    console.log(data, 'update ddata')
     const handlerUpdate = async (e) => {
         e.preventDefault();
         const review = e.target.review.value;
-        console.log(review, 'review')
-        console.log(e, 'func e')
         const fetchRes = await fetch(`http://localhost:5500/review?id=${data._id}`, {
             method: "PUT", 
         headers:{
@@ -20,7 +19,6 @@ const UpdateReview = () => {
             body: JSON.stringify({ review })
         })
         const fetchData = await fetchRes.json();
-        console.log(fetchData, 'fetchData')
         if (fetchData.modifiedCount> 0) {
             toast('Successfully Updated', { autoClose: 1000 })
             e.target.reset()            
