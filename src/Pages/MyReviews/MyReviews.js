@@ -16,7 +16,9 @@ const MyReviews = () => {
             console.log(fetchData, 'fetch data ')
             setMyReviews(fetchData);            
         }
-        const loaderReturn = loader()
+        if(user?.email){
+            loader()
+        }
     },[user?.email])
     const handlerDelete =async(e) => {
         const fetchRes = await fetch(`http://localhost:5500/review?id=${e._id}`,{

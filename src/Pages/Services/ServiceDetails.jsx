@@ -70,7 +70,7 @@ const ServiceDetails = () => {
                {reviews.map((e,i,a)=><OthersReview key={i} e={e}></OthersReview>) }
             </div>
             <div className="card w-96 bg-base-100 shadow-xl border-4">
-                <h2 className='text-2xl'>Add review</h2>
+                <h2 className='text-2xl text-center'>Add review</h2>
                 <form onSubmit={(a)=>{
                     a.preventDefault();
                     addRiviewHandler(a.target)
@@ -79,7 +79,7 @@ const ServiceDetails = () => {
                         <label className="label">
                             <span className="label-text">Review</span>
                         </label>
-                        <textarea name='review'  type="text" placeholder="Review" className="input input-bordered" />
+                        <textarea required name='review'  type="text" placeholder="Review" className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">
