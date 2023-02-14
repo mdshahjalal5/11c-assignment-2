@@ -42,7 +42,7 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input name='password'  required type="text" placeholder="password" className="input input-bordered" />
+                            <input name='password' type="password"  required  placeholder="password" className="input input-bordered" />
                             <label className="label">
                                 <Link to="#" className="label-text-alt link link-hover">Forgot password?</Link>
                             </label>

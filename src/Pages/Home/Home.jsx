@@ -8,7 +8,7 @@ const Home = () => {
     const [services, setServices] = useState([])
     useEffect(function named() {
         const loader = async () => {
-            const fech = await fetch('http://localhost:5500/services?limit=3', {
+            const fech = await fetch('https://11s-assignment.vercel.app/services?limit=3', {
                 method: 'GET',
                 headers: {
                     test: { intro:'shahjalal'}

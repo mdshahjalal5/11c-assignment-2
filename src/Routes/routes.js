@@ -44,7 +44,7 @@ export const router = createBrowserRouter([
                 path: `/service/:id`,
                 loader:async  function ({ params }){
                     const id = params.id;
-                      const  fech = await fetch(`http://localhost:5500/service/${id}`)
+                      const  fech = await fetch(`https://11s-assignment.vercel.app/service/${id}`)
                      const fechData =  await fech.json()
                      const {serviceData} = fechData;
                     return serviceData; 
@@ -60,7 +60,7 @@ export const router = createBrowserRouter([
                 element:<UpdateReview></UpdateReview>, 
                 loader:async ({params})=>{
                     const id = params.id;
-                    const fetchRes = fetch(`http://localhost:5500/update/${id}`)
+                    const fetchRes = fetch(`https://11s-assignment.vercel.app/update/${id}`)
                     const fetchData = await fetchRes;
                     const data = await fetchData.json();
                     return data;

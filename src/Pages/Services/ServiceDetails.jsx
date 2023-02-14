@@ -13,7 +13,7 @@ const ServiceDetails = () => {
     useEffect(()=>{
         async function loader(){
             setLoading(true)
-            const fetchRes = await fetch(`http://localhost:5500/orders`)
+            const fetchRes = await fetch(`https://11s-assignment.vercel.app/orders`)
             const fetchData = await fetchRes.json()
             setReviews(fetchData)
             setLoading(false)
@@ -35,7 +35,7 @@ const ServiceDetails = () => {
         const ReviewData = {
             review, mail, serviceId:_id, userPhoto,
         }
-         fetch(`http://localhost:5500/orders`,{
+         fetch(`https://11s-assignment.vercel.app/orders`,{
             method:"POST", 
             headers:{
                 'content-type':'application/json',

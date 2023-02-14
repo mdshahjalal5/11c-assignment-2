@@ -14,7 +14,7 @@ const MyReviews = () => {
     useEffect(()=>{
         async function loader(){
             setLoading('truthy')            
-            const fetchRes = await fetch(`http://localhost:5500/orders?email=${user?.email}`)
+            const fetchRes = await fetch(`https://11s-assignment.vercel.app/orders?email=${user?.email}`)
             const fetchData = await fetchRes.json()
             setLoading('')
             setMyReviews(fetchData);            
@@ -24,7 +24,7 @@ const MyReviews = () => {
         }
     },[user?.email])
     const handlerDelete =async(e) => {
-        const fetchRes = await fetch(`http://localhost:5500/review?id=${e._id}`,{
+        const fetchRes = await fetch(`https://11s-assignment.vercel.app/review?id=${e._id}`,{
             method:"DELETE"
         })
         const fetchData = await fetchRes.json();

@@ -11,7 +11,7 @@ const UpdateReview = () => {
     const handlerUpdate = async (e) => {
         e.preventDefault();
         const review = e.target.review.value;
-        const fetchRes = await fetch(`http://localhost:5500/review?id=${data._id}`, {
+        const fetchRes = await fetch(`https://11s-assignment.vercel.app/review?id=${data._id}`, {
             method: "PUT", 
         headers:{
             'content-type':'application/json', 
