@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/Authprovider';
 import ReviewsRow from './ReviewsRow';
 
 const MyReviews = () => {
+    const navigate = useNavigate();
     const {user} = useContext(AuthContext)
     const [myReviews, setMyReviews] = useState([])
     console.log(user, 'user', user?.email)
@@ -17,7 +19,6 @@ const MyReviews = () => {
         const loaderReturn = loader()
     },[user?.email])
     const handlerDelete =async(e) => {
-        console.log(e,'func e')
         const fetchRes = await fetch(`http://localhost:5500/review?id=${e._id}`,{
             method:"DELETE"
         })
@@ -28,6 +29,18 @@ const MyReviews = () => {
             const existingReview = myReviews.filter(ev => ev._id !== e._id);
             setMyReviews(existingReview)
         }
+    }
+    const handlerUpdate = async(e)=>{
+        navigate(`/update/${e._id}`)
+        console.log(e, 'func e')
+        // const fetchRes = await fetch(`http://localhost:5500/review?id=${e._id}`, {
+        //     method: "PUT"
+        // })
+        // const fetchData = await fetchRes.json();
+        // console.log(fetchData, 'fetchData')
+        // if (fetchData.modifiedCount) {
+        //     toast('Successfully Updated', { autoClose: 1000 })
+        // }
     }
     return (
         <>
@@ -45,7 +58,7 @@ const MyReviews = () => {
                         </tr>
                     </thead>
                     <tbody className=''>
-                        {myReviews.map((e, i, a) => { return <ReviewsRow key={i} e={e} handlerDelete={handlerDelete}></ReviewsRow> })}
+                        {myReviews.map((e, i, a) => { return <ReviewsRow key={i} e={e} handlerDelete={handlerDelete} handlerUpdate={handlerUpdate}></ReviewsRow> })}
                     </tbody>
 
                 </table>

@@ -10,6 +10,7 @@ import Register from "../Pages/Register/Register";
 import Services from "../Pages/Services/Services";
 import ServiceDetails from '../Pages/Services/ServiceDetails'
 import MyReviews from "../Pages/MyReviews/MyReviews";
+import UpdateReview from "../Pages/UpdateReview/UpdateReview";
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -53,6 +54,17 @@ export const router = createBrowserRouter([
             {
                 path:'/myreviews', 
                 element:<MyReviews></MyReviews>, 
+            },
+            {
+                path:`/update/:id`, 
+                element:<UpdateReview></UpdateReview>, 
+                loader:async ({params})=>{
+                    const id = params.id;
+                    const fetchRes = fetch(`http://localhost:5500/update/${id}`)
+                    const fetchData = await fetchRes;
+                    const data = await fetchData.json();
+                    return data;
+                }
                 
             }
         ],
